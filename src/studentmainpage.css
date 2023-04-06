@@ -1,0 +1,578 @@
+@charset "utf-8";
+/*
+Template Name: Shiphile
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+File: Layout CSS
+*/
+
+/* @import url("fontawesome-free/css/fontawesome-all.min.css"); */
+/* @import url("framework.css"); */
+@charset "utf-8";
+/*
+Template Name: Shiphile
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+File: Framework CSS
+*/
+
+html{overflow-y:scroll; overflow-x:hidden;}
+html, body{margin:0; padding:0; font-size:14px; line-height:1.6em;}
+
+*, *::before, *::after{box-sizing:border-box;}
+
+ .student .bold{font-weight:bold;}
+ .student .center{text-align:center;}
+.student .right{text-align:right;}
+.student .uppercase{text-transform:uppercase;}
+.student .capitalise{text-transform:capitalize;}
+.student .hidden{display:none;}
+.student .nospace{margin:0; padding:0; list-style:none;}
+.student .block{display:block;}
+.student .justified{text-align:justify;}
+.student .inline *{display:inline-block;}
+.student .inline *:last-child{margin-right:0;}
+.student .pushright li{margin-right:20px;}
+.student .pushright li:last-child{margin-right:0;}
+.student .borderedbox{border:1px solid;}
+.student .overlay{position:relative; z-index:1;}
+.student .overlay::after{display:block; position:absolute; top:0; left:0; width:100%; height:100%; content:""; z-index:-1;}
+.student .bgded{background-position:top center; background-repeat:no-repeat; background-size:cover;}
+.student .circle{border-radius:50%; background-clip:padding-box;}
+.student .btn{display:inline-block; padding:8px 18px 10px; text-transform:uppercase; border:1px solid;}
+
+.student .clear, .group{display:block;}
+.student .clear::before, .clear::after, .group::before, .group::after{display:table; content:"";}
+.student .clear, .clear::after, .group, .group::after{clear:both;}
+
+.student a{outline:none; text-decoration:none;}
+
+.student .student .fl_left, .imgl{float:left;}
+.student .student .fl_right, .imgr{float:right;}
+
+.student img{width:auto; max-width:100%; height:auto; margin:0; padding:0; border:none; line-height:normal; vertical-align:middle;}
+.student .imgl{margin:0 15px 10px 0; clear:left;}
+.student .imgr{margin:0 0 10px 15px; clear:right;}
+.student .imgover{display:inline-block; position:relative; max-width:100%;}
+.student .imgover::before, .imgover::after{display:block; position:absolute; content:""; text-align:center; opacity:0;}
+.student .imgover::before{top:0; right:0; bottom:0; left:0;}
+.student .imgover::after{top:50%; left:50%; width:50px; height:50px; line-height:50px; margin:-25px 0 0 -25px; font-family:"Font Awesome\ 5 Free"; font-weight:900; content:"\f067";/* fa-plus */ font-size:28px;}
+.student .imgover:hover::before, .imgover:hover::after{opacity:1;}
+
+
+/* Fonts
+--------------------------------------------------------------------------------------------------------------- */
+.student body, input, textarea, select{font-family:Verdana, Geneva, sans-serif;}
+.student h1, h2, h3, h4, h5, h6, .heading{font-family:Georgia, "Times New Roman", Times, serif;}
+
+
+/* Forms
+--------------------------------------------------------------------------------------------------------------- */
+.student form, fieldset, legend{margin:0; padding:0; border:none;}
+.student legend{display:none;}
+.student label, input, textarea, select, button{display:block; resize:none; outline:none; color:inherit; font-size:inherit; font-family:inherit; vertical-align:middle;}
+.student label{margin-bottom:5px;}
+.student :required, :invalid{outline:none; box-shadow:none;}
+.student ::placeholder{opacity:1;}/* Makes sure the placeholder text is not transparent */
+
+
+/* Generalise
+--------------------------------------------------------------------------------------------------------------- */
+.student h1, h2, h3, h4, h5, h6, .heading{margin:0 0 20px 0; font-size:1.4rem; line-height:normal; font-weight:normal; text-transform:capitalize;}
+.student .heading.nospace{margin-bottom:0;}
+
+.student address{font-style:normal; font-weight:normal;}
+.student hr{display:block; width:100%; height:1px; border:solid; border-width:1px 0 0 0;}
+
+.student .font-xs{font-size:1rem;}
+.student .font-x2{font-size:2.2rem;}
+.student .font-x3{font-size:3.2rem;}
+
+.student .wrapper{display:block; position:relative; width:100%; margin:0; padding:0; text-align:left; word-wrap:break-word;}
+/*
+The "hoc" class is a generic class used to centre a containing element horizontally
+It should be used in conjunction with a second class or ID
+*/
+.student .hoc{display:block; margin:0 auto;}
+
+
+/* HTML 5 Overrides
+--------------------------------------------------------------------------------------------------------------- */
+.student address, article, aside, figcaption, figure, footer, header, main, nav, section{display:block; margin:0; padding:0;}
+
+
+/* Grid - RS-MQF 1140 V.2 - https://www.os-templates.com/free-basic-html5-templates/rs-mqf-1140
+--------------------------------------------------------------------------------------------------------------- */
+.student .one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:inline-block; float:left; margin:0 0 0 4.21052%; list-style:none;}
+
+.student .first{margin-left:0; clear:left;}
+
+.student .one_quarter{width:21.8421%;}
+.student .one_third{width:30.52631%;}
+.student .one_half, .two_quarter{width:47.89473%;}
+.student .two_third{width:65.26315%;}
+.student .three_quarter{width:73.94736%;}
+
+
+/* Spacing
+--------------------------------------------------------------------------------------------------------------- */
+.student .btmspace-10{margin-bottom:10px;}
+.student .btmspace-15{margin-bottom:15px;}
+.student .btmspace-30{margin-bottom:30px;}
+.student .btmspace-50{margin-bottom:50px;}
+.student .btmspace-80{margin-bottom:80px;}
+
+.student .rgtspace-5{margin-right:5px;}
+.student .rgtspace-10{margin-right:10px;}
+.student .rgtspace-15{margin-right:15px;}
+.student .rgtspace-30{margin-right:30px;}
+.student .rgtspace-50{margin-right:50px;}
+.student .rgtspace-80{margin-right:80px;}
+
+.student .inspace-5{padding:5px;}
+.student .inspace-10{padding:10px;}
+.student .inspace-15{padding:15px;}
+.student .inspace-30{padding:30px;}
+.student .inspace-50{padding:50px;}
+.student .inspace-80{padding:80px;}
+
+/* Rows
+--------------------------------------------------------------------------------------------------------------- */
+.row0, .row0 a{}
+.row1, .row1 a{}
+.row2, .row2 a{}
+.row3, .row3 a{}
+.row4, .row4 a{}
+.row5, .row5 a{}
+
+
+/* Header
+--------------------------------------------------------------------------------------------------------------- */
+.student #header{padding:50px 0;}
+
+.student #header *{margin:0; padding:0; line-height:1;}
+.student #header #logo{font-size:26px; text-transform:uppercase;}
+.student #header #logo i{display:block; margin-bottom:20px; font-size:3.5rem;}
+
+
+/* Page Intro
+--------------------------------------------------------------------------------------------------------------- */
+.student #pageintro{padding:180px 0;}
+
+.student #pageintro article{display:block; max-width:50%;}
+.student #pageintro .heading{margin-bottom:20px; font-size:4rem;}
+.student #pageintro p{}
+.student #pageintro footer{margin-top:50px;}
+
+
+
+
+
+/* Content Area
+--------------------------------------------------------------------------------------------------------------- */
+/* .student .container{padding:80px 0;} */
+
+/* Content */
+.student .container .content{}
+
+.student.sectiontitle{display:block; max-width:50%; margin:0 auto 100px; text-align:center;}
+.student.sectiontitle *{margin:0;}
+.student.sectiontitle .heading{margin-bottom:20px;}
+
+.student .posts figure{display:block; margin-bottom:50px;}
+.student .posts figure:last-child{margin-bottom:0;}/* Used when elements stack in small viewports */
+.student .posts figure > div, .posts figure figcaption{display:block; float:left; width:50%;}
+.posts figure > div{}
+.posts figure > div img{}
+.student .posts figure figcaption{padding:50px 0 0 50px;}
+.posts figure figcaption{}
+.posts figure figcaption *{margin:0;}
+.posts figure figcaption .heading{margin-bottom:30px;}
+.posts figure figcaption footer{margin-top:30px;}
+.posts figure:nth-child(even) > div{float:right;}
+.posts figure:nth-child(even) figcaption{float:left; padding-left:0; padding-right:50px;}
+
+.team{}
+.team li:last-child{margin-bottom:0;}/* Used when elements stack in small viewports */
+.team figure{display:block; text-align:center; padding:30px;}
+.team figure *{margin:0; padding:0;}
+.team figure a{}
+.team figure .imgover::before, .team figure img{border-radius:50%;}
+.team figure figcaption{margin:35px 0 0 0; line-height:1;}
+.team figure strong{}
+.team figure em{display:block; font-style:normal; font-size:.8rem;}
+
+.latest{}
+.latest > li:last-child{margin-bottom:0;}/* Used when elements stack in small viewports */
+.latest article{padding:30px;}
+.latest article .heading{}
+.latest article p{}
+.latest article .meta{}
+.latest article .meta li{display:inline-block; font-size:.8rem; line-height:1;}
+.latest article .meta li::after{margin-left:5px; content:"|";}
+.latest article .meta li:last-child::after{margin:0; content:"";}
+.latest article .meta li time{font-style:normal;}
+.latest article footer{margin-top:30px;}
+
+/* Comments */
+#comments ul{margin:0 0 40px 0; padding:0; list-style:none;}
+#comments li{margin:0 0 10px 0; padding:15px;}
+#comments .avatar{float:right; margin:0 0 10px 10px; padding:3px; border:1px solid;}
+#comments address{font-weight:bold;}
+#comments time{font-size:smaller;}
+#comments .comcont{display:block; margin:0; padding:0;}
+#comments .comcont p{margin:10px 5px 10px 0; padding:0;}
+
+#comments form{display:block; width:100%;}
+#comments input, #comments textarea{width:100%; padding:10px; border:1px solid;}
+#comments textarea{overflow:auto;}
+#comments div{margin-bottom:15px;}
+#comments input[type="submit"], #comments input[type="reset"]{display:inline-block; width:auto; min-width:150px; margin:0; padding:8px 5px; cursor:pointer;}
+
+/* Sidebar */
+.container .sidebar{}
+
+.student .sidebar .sdb_holder{margin-bottom:50px;}
+.student .sidebar .sdb_holder:last-child{margin-bottom:0;}
+
+
+/* Call Back
+--------------------------------------------------------------------------------------------------------------- */
+.student #callback{padding:30px 0;}
+
+.student #callback > div{display:block; max-width:50%; margin:0 auto; padding:30px; text-align:center;}
+.student #callback input, #callback button{border:1px solid;}
+.student #callback input{display:block; width:100%; margin:0 0 15px 0; padding:8px 15px;}
+.student #callback button{margin:0 auto; padding:8px 18px 10px; text-transform:uppercase; cursor:pointer;}
+
+
+/* Footer
+--------------------------------------------------------------------------------------------------------------- */
+#footer{padding:80px 0;}
+
+#footer .heading{margin-bottom:50px;}
+
+#footer > div:first-of-type .heading{margin-bottom:20px; text-transform:uppercase; font-size:1.8rem;}
+#footer > div:first-of-type .faico{margin-bottom:30px;}
+
+#footer .linklist li{display:block; margin-bottom:15px; padding:0 0 15px 0; border-bottom:1px solid;}
+#footer .linklist li:last-child{margin:0; padding:0; border:none;}
+#footer .linklist li::before, #footer .linklist li::after{display:table; content:"";}
+#footer .linklist li, #footer .linklist li::after{clear:both;}
+
+#footer .contact{}
+#footer .contact.linklist li, #footer .contact.linklist li:last-child{position:relative; padding-left:40px;}
+#footer .contact li *{margin:0; padding:0; line-height:1.6;}
+#footer .contact li i{display:block; position:absolute; top:0; left:0; width:30px; font-size:16px; text-align:center;}
+
+#footer .latestimg{}
+#footer .latestimg > li{display:inline-block; float:left; width:30%; margin:0 0 5% 5%;}
+#footer .latestimg > li:nth-last-child(-n+3){margin-bottom:0;}/* Removes bottom margin from the last three items - margin is restored in the media queries when items stack */
+#footer .latestimg > li:nth-child(3n+1){margin-left:0; clear:left;}/* Removes the need to add class="first" */
+#footer .latestimg > li img{width:100%;}/* Force the image to resize to take the full space - may have to be changed for tablets, depends on personal preference */
+#footer .latestimg > li a.imgover{display:block;}
+
+
+/* Copyright
+--------------------------------------------------------------------------------------------------------------- */
+#copyright{padding:20px 0;}
+#copyright *{margin:0; padding:0;}
+
+
+/* Transition Fade
+This gives a smooth transition to "ALL" elements used in the layout - other than the navigation form used in mobile devices
+If you don't want it to fade all elements, you have to list the ones you want to be faded individually
+Delete it completely to stop fading
+--------------------------------------------------------------------------------------------------------------- */
+*, *::before, *::after{transition:all .3s ease-in-out;}
+#mainav form *{transition:none !important;}
+
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+/* Navigation
+--------------------------------------------------------------------------------------------------------------- */
+.student nav ul, nav ol{margin:0; padding:0; list-style:none;}
+
+.student #mainav, #breadcrumb, .sidebar nav{line-height:normal;}
+.student #mainav .drop::after, #mainav li li .drop::after, #breadcrumb li a::after, .sidebar nav a::after{position:absolute; font-family:"Font Awesome\ 5 Free"; font-weight:900; font-size:10px; line-height:10px;}
+
+/* Top Navigation */
+#mainav{}
+.student #mainav ul{text-transform:uppercase; text-align:center;}
+.student #mainav ul ul{z-index:9999; position:absolute; width:180px; text-transform:none; text-align:left;}
+.student #mainav ul ul ul{left:180px; top:0;}
+.student #mainav li{display:inline-block; position:relative; margin:0 30px 0 0; padding:0;}
+.student #mainav li:last-child{margin-right:0;}
+.student #mainav li li{width:100%; margin:0;}
+.student #mainav li a{display:block; padding:20px 0;}
+.student #mainav li li a{border:solid; border-width:0 0 1px 0;}
+.student #mainav .drop{padding-left:15px;}
+.student #mainav li li a, #mainav li li .drop{display:block; margin:0; padding:10px 15px;}
+.student #mainav .drop::after, #mainav li li .drop::after{content:"\f0d7";}
+.student #mainav .drop::after{top:25px; left:5px;}
+.student #mainav li li .drop::after{top:15px; left:5px;}
+.student #mainav ul ul{visibility:hidden; opacity:0;}
+.student #mainav ul li:hover > ul{visibility:visible; opacity:1;}
+
+.student #mainav form{display:none; margin:0; padding:0;}
+.student #mainav form select, #mainav form select option{display:block; cursor:pointer; outline:none;}
+.student #mainav form select{width:100%; padding:5px; border:none;}
+.student #mainav form select option{margin:5px; padding:0; border:none;}
+
+/* Breadcrumb */
+#breadcrumb{padding:150px 0 30px;}
+#breadcrumb ul{margin:0; padding:0; list-style:none; text-transform:uppercase;}
+#breadcrumb li{display:inline-block; margin:0 6px 0 0; padding:0;}
+#breadcrumb li a{display:block; position:relative; margin:0; padding:0 12px 0 0; font-size:12px;}
+#breadcrumb li a::after{top:4px; right:0; content:"\f0da";}
+#breadcrumb li:last-child a{margin:0; padding:0;}
+#breadcrumb li:last-child a::after{display:none;}
+#breadcrumb .heading{margin:0; font-size:2rem;}
+
+/* Sidebar Navigation */
+.student .sidebar nav{display:block; width:100%;}
+.student .sidebar nav li{margin:0 0 3px 0; padding:0;}
+.student .sidebar nav a{display:block; position:relative; margin:0; padding:5px 10px 5px 15px; text-decoration:none; border:solid; border-width:0 0 1px 0;}
+.student .sidebar nav a::after{top:10px; left:5px; content:"\f0da";}
+.student .sidebar nav ul ul a{padding-left:35px;}
+.student .sidebar nav ul ul a::after{left:25px;}
+.student .sidebar nav ul ul ul a{padding-left:55px;}
+.student .sidebar nav ul ul ul a::after{left:45px;}
+
+/* Pagination */
+.pagination{display:block; width:100%; text-align:center; clear:both;}
+.pagination li{display:inline-block; margin:0 2px 0 0;}
+.pagination li:last-child{margin-right:0;}
+.pagination a, .pagination strong{display:block; padding:8px 11px; border:1px solid; background-clip:padding-box; font-weight:normal;}
+
+/* Back to Top */
+.student .student #backtotop{z-index:999; display:inline-block; position:fixed; visibility:hidden; bottom:20px; right:20px; width:36px; height:36px; line-height:36px; font-size:16px; text-align:center; opacity:.2;}
+.student .student #backtotop i{display:block; width:100%; height:100%; line-height:inherit;}
+.student .student #backtotop.visible{visibility:visible; opacity:.5;}
+.student .student #backtotop:hover{opacity:1;}
+
+
+/* Tables
+--------------------------------------------------------------------------------------------------------------- */
+.student table, th, td{border:1px solid rgb(51, 50, 50); border-collapse:collapse; vertical-align:top;}
+.student table, th{table-layout:auto;}
+.student table{width:100%; margin-bottom:15px;}
+.student th, td{padding:5px 8px;}
+.student td{border-width:0 1px;}
+
+
+/* Gallery
+--------------------------------------------------------------------------------------------------------------- */
+#gallery{display:block; width:100%; margin-bottom:50px;}
+#gallery figure figcaption{display:block; width:100%; clear:both;}
+#gallery li{margin-bottom:30px;}
+
+
+/* Font Awesome Social Icons
+--------------------------------------------------------------------------------------------------------------- */
+.faico{margin:0; padding:0; list-style:none;}
+.faico li{display:inline-block; margin:8px 5px 0 0; padding:0; line-height:normal;}
+.faico li:last-child{margin-right:0;}
+.faico a{display:inline-block; width:36px; height:36px; line-height:36px; font-size:18px; text-align:center;}
+
+.faico a{color:#9099AA; background-color:#2C3541;}
+.faico a:hover{color:#FFFFFF;}
+
+.faicon-dribble:hover{background-color:#EA4C89;}
+.faicon-facebook:hover{background-color:#3B5998;}
+.faicon-google-plus:hover{background-color:#DB4A39;}
+.faicon-linkedin:hover{background-color:#0E76A8;}
+.faicon-twitter:hover{background-color:#00ACEE;}
+.faicon-vk:hover{background-color:#4E658E;}
+
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+/* Colours
+--------------------------------------------------------------------------------------------------------------- */
+.student{color:#5F6F89; background-color:#2C3541;}
+a{color:#9099AA;}
+a:active, a:focus{background:transparent !important;}/* IE10 + 11 Bugfix - prevents grey background */
+.student hr, .borderedbox{border-color:#D7D7D7;}
+label span{color:#FF0000; background-color:inherit;}
+input:focus, textarea:focus, *:required:focus{border-color:#9099AA !important;}
+
+.overlay{color:#FFFFFF; background-color:inherit;}
+.overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}
+.overlay.light{color:#474747;}
+.overlay.light::after{background-color:rgba(255,255,255,.7);}
+
+.student .btn, .btn.inverse:hover{color:#FFFFFF; background-color:#9099AA; border-color:#9099AA;}
+.student .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
+
+.student .imgover:hover::before{background:rgba(0,0,0,.55);}
+.student .imgover, .imgover:hover::after{color:#9099AA;}
+
+
+/* Rows */
+.student .row0, .row0 a{color:#FFFFFF;}
+.student .row1{background-color:rgba(144,153,170,.5);/* #9099AA */}
+.student .row2{color:#474747; background-color:#EFEFEF;}
+.student .row3{color:#474747; background-color:#FFFFFF;}
+.student .row4{color:#DFDFDF; background-color:#3F4A5C;}
+.student .row5, .row5 a{color:#5F6F89; background-color:#2C3541;}
+
+
+/* Header */
+.student #header #logo a{color:inherit;}
+.student #header #logo i{color:#FFB900;}
+
+
+/* Page Intro */
+.student #pageintro{color:#FFFFFF;}
+
+
+/* Content Area */
+.student .team figure, .latest article{box-shadow:0px 0px 15px rgba(0,0,0,.1);}
+.student .team figure:hover{color:inherit; background-color:#FFFFFF;}
+.student .latest article:hover{box-shadow:0px 0px 15px rgba(0,0,0,.3);}
+
+
+/* Call Back */
+.student #callback > div{color:#474747; background-color:rgba(255,255,255,.8);}
+.student #callback input{color:#474747; background-color:#FFFFFF; border-color:#D7D7D7;}
+.student #callback button{color:#FFFFFF; background-color:#9099AA; border-color:#9099AA;}
+.student #callback button:hover{color:inherit; background-color:transparent; border-color:inherit;}
+
+
+/* Footer */
+.student #footer .heading{color:#FFFFFF;}
+.student #footer hr, #footer .borderedbox, #footer .linklist li{border-color:rgba(255,255,255,.1);}
+
+
+/* Navigation */
+#mainav{}
+.student #mainav li a{color:inherit;}
+.student #mainav .active a, #mainav a:hover, #mainav li:hover > a{color:#FFB900; background-color:inherit;}
+.student #mainav li li a, #mainav .active li a{color:#FFFFFF; background-color:rgba(144,153,170,.5);/* #9099AA */ border-color:rgba(144,153,170,1);/* #9099AA */}
+.student #mainav li li:hover > a, #mainav .active .active > a{color:#FFB900; background-color:#9099AA;}
+.student #mainav form select{color:#474747; background-color:#FFFFFF;}
+
+#breadcrumb a{color:inherit; background-color:inherit;}
+#breadcrumb li:last-child a{color:#9099AA;}
+
+.container .sidebar nav a{color:inherit; border-color:#D7D7D7;}
+.container .sidebar nav a:hover{color:#9099AA;}
+
+.pagination a, .pagination strong{border-color:#D7D7D7;}
+.pagination .current *{color:#FFFFFF; background-color:#9099AA;}
+
+#backtotop{color:#FFFFFF; background-color:#9099AA;}
+
+
+/* Tables + Comments */
+.student table, th, td, #comments .avatar, #comments input, #comments textarea{border-color:#887b7b;}
+.student th{color:#FFFFFF; background-color:#373737;}
+.student tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{color:inherit; background-color:#FBFBFB;}
+.student tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
+.student table a, #comments a{background-color:inherit;}
+
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+/* Media Queries
+--------------------------------------------------------------------------------------------------------------- */
+@-ms-viewport{width:device-width;}
+
+
+/* Max Wrapper Width - Laptop, Desktop etc.
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (min-width:1140px){
+	.student .hoc{max-width:1140px;}
+}
+
+@media screen and (min-width:978px) and (max-width:1140px){
+	.student .hoc{max-width:95%;}
+}
+
+
+/* Mobile Devices
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (max-width:978px){
+	.hoc{max-width:90%;}
+
+	#header{}
+
+	.student #mainav{padding:15px;}
+	.student #mainav ul{display:none;}
+	.student #mainav form{display:block;}
+
+	#breadcrumb{}
+
+	.container{}
+	.student #comments input[type="reset"]{margin-top:10px;}
+	.student .pagination li{display:inline-block; margin:0 5px 5px 0;}
+
+	#footer{}
+
+	#copyright{}
+	#copyright p:first-of-type{margin-bottom:10px;}
+}
+
+@media screen and (min-width:750px) and (max-width:978px){
+	.posts figure figcaption{padding-top:0;}
+}
+
+@media screen and (max-width:750px){
+	.imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
+	.fl_left, .fl_right{display:block; float:none;}
+	.group .group > *:last-child, .clear .clear > *:last-child, .clear .group > *:last-child, .group .clear > *:last-child{margin-bottom:0;}/* Experimental - Needs more testing in different situations, stops double margin when stacking */
+	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0; padding:0;}
+
+	#pageintro article{max-width:none;}
+	#pageintro .heading{font-size:2rem;}
+
+	.sectiontitle{max-width:none; margin-bottom:50px; text-align:left;}
+	.posts figure{max-width:570px;}/* Same width as the image */
+	.posts figure > div, .posts figure figcaption, .posts figure:nth-child(even) > div, .posts figure:nth-child(even) figcaption{display:block; float:none; width:100%;}
+	.posts figure figcaption, .posts figure:nth-child(even) figcaption{padding:50px 0 0 0;}
+	.team figure{max-width:350px;}
+
+	#callback > div{max-width:none;}
+
+	#footer .latestimg > li, #footer .latestimg > li:nth-last-child(-n+3){display:inline-block; float:none; width:auto; margin:0 5% 5% 0;}
+	#footer .latestimg > li:last-child{margin-bottom:0;}
+	#footer .latestimg > li img{width:auto;}
+}
+
+
+/* Other
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (max-width:650px){
+	.student .scrollable{display:block; width:100%; margin:0 0 30px 0; padding:0 0 15px 0; overflow:auto; overflow-x:scroll;}
+	.student .scrollable table{margin:0; padding:0; white-space:nowrap;}
+
+	.student .inline li{display:block; margin-bottom:10px;}
+	.student .pushright li{margin-right:0;}
+
+	.student .font-x2{font-size:1.6rem;}
+	.student .font-x3{font-size:1.8rem;}
+}
