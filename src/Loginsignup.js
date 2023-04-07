@@ -86,6 +86,8 @@ const navigate = useNavigate();
                 // navigate('/App')
                 // window.location.replace("index2.js");
                 localStorage.setItem("app",1);
+              localStorage.setItem("cpcid",cpcid);
+
 
                 // window.reload();
                 // location.reload();
@@ -144,6 +146,8 @@ const navigate = useNavigate();
           else{
               alert("Registration successful ");
               localStorage.setItem("app",1);
+              localStorage.setItem("cpcid",cpcid);
+
               localStorage.setItem("sora",0);
 
                 // window.reload();

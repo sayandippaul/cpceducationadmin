@@ -1,8 +1,15 @@
 import "./studentmainpage.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 var student=[];
+var times=["7:00-9:00AM","9:00-12:00PM","12:00-2:00PM","2:00-4:00PM","4:00-6:00PM","6:00-8:00PM","8:00-10:00PM"];
+var days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+var keys=['a','b','c','d','e','f','g'];
 
 function Studentmainpage() {
+    const dataFetchedRef = useRef(false);
+    // useEffect((async) => {
+
+   
   var [student, setdata] = useState([]);
   var [address, setaddress] = useState("");
   var [name, setname] = useState("");
@@ -12,11 +19,13 @@ function Studentmainpage() {
   var [password, setpass] = useState("");
 
     function getcursor (oldcpcid){
+         
         //  alert("hi: "+oldcpcid);
           document.getElementById('textbox').focus();
           const user = {address: address,name:name,email:email,course:course,password:password,phone:phone,name:name,oldcpcid:oldcpcid};
           console.log(user);
-          
+
+          var studentbatch=[];
       fetch("http://localhost:3000/updatestudent", {
           method: "POST",
           headers: {
@@ -35,9 +44,27 @@ function Studentmainpage() {
     
       
   }
-   const user={cpcid:"cpcid"};
+  var showbatch="";
+  function setbatch(bat){
+    // console.log(bat+"hi");
+    for(var i=0;i<bat.length;i++){
+        var s1=bat[i][0];
+        var s2=bat[i][1];
+        var s3=keys.indexOf(s2);
+        console.log(s2+" "+s3);
+         showbatch=showbatch+days[s1-1]+" : "+times[s3]+"<hr/>"
+
+        
+  }
+  document.getElementById("showbatch").innerHTML=showbatch;
+}
+   const user={cpcid:localStorage.getItem('cpcid')};
+//    const user={cpcid:"cpc12345"};
+
   useEffect(() => {
-    
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+  
     fetch("http://localhost:3000/loginid", {
       method: "POST",
       headers: {
@@ -54,7 +81,8 @@ function Studentmainpage() {
         // console.log(data[0].feedetailstransactionid);
         // student=data;
         setdata(data);
-        console.log(data);
+        console.log(data.batch);
+        setbatch(data.batch);
 
         // setFilteredList(data);
         // setStudents(data);
@@ -293,11 +321,11 @@ function Studentmainpage() {
             <div className="row">
                 {/* <!-- <div className="col-1 text-danger pt-1"><i className="ti-paint-bucket icon-lg"></i></div> --> */}
             <div className="col-10 ml-auto mr-3">
-            <h6>Course Days</h6>
-            <p className="subtitle">Lorem ipsum dolor sit consectetur.</p>
-            <p className="subtitle">Lorem ipsum dolor sit consectetur.</p>
-            <p className="subtitle">Lorem ipsum dolor sit consectetur.</p>
-            <hr/>
+            <h6 >Course Days</h6>
+            <p id="showbatch"className="subtitle">Lorem ipsum dolor sit consectetur.</p>
+            {/* <p className="subtitle">Lorem ipsum dolor sit consectetur.</p>
+            <p className="subtitle">Lorem ipsum dolor sit consectetur.</p> */}
+            {/* <hr/> */}
             </div>
             </div>
             </div>

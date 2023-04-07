@@ -288,7 +288,10 @@ app.post('/updatestudent', async (req, res) => {
                 }
 
             }
+            
 console.log(mydata);
+// console.log(values.batch);
+
             
         await Model.findByIdAndUpdate(student._id, mydata);
         res.json(student)
