@@ -1,8 +1,41 @@
 import "./studentmainpage.css";
 import { useState, useEffect } from "react";
+var student=[];
 
 function Studentmainpage() {
-    const user={cpcid:"cpcid"};
+  var [student, setdata] = useState([]);
+  var [address, setaddress] = useState("");
+  var [name, setname] = useState("");
+  var [email, setemail] = useState("");
+  var [phone, setphone] = useState("");
+  var [course, setcourse] = useState("");
+  var [password, setpass] = useState("");
+
+    function getcursor (oldcpcid){
+        //  alert("hi: "+oldcpcid);
+          document.getElementById('textbox').focus();
+          const user = {address: address,name:name,email:email,course:course,password:password,phone:phone,name:name,oldcpcid:oldcpcid};
+          console.log(user);
+          
+      fetch("http://localhost:3000/updatestudent", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Origin": "*"
+          },
+          body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+          .then(data => {
+          })
+          .catch(err => console.log(err));
+    
+      
+  }
+   const user={cpcid:"cpcid"};
   useEffect(() => {
     
     fetch("http://localhost:3000/loginid", {
@@ -19,7 +52,10 @@ function Studentmainpage() {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data[0].feedetailstransactionid);
+        // student=data;
+        setdata(data);
         console.log(data);
+
         // setFilteredList(data);
         // setStudents(data);
       })
@@ -105,8 +141,8 @@ function Studentmainpage() {
                                 <ul className="navbar-nav brand mx-auto">
                                     {/* <!-- <img src="assets/imgs/avatar.jpg" alt="" className="brand-img"> --> */}
                                     <li className="brand-txt">
-                                        <h5 className="brand-title">Sayandip Paul</h5>
-                                        <div className="brand-subtitle">CpcId | #12345</div>
+                                        <h5 className="brand-title">{student.name}</h5>
+                                        <div className="brand-subtitle">CpcId | {student.cpcid}</div>
                                     </li>
                                 </ul>
                                 <ul className="navbar-nav mx-auto">
@@ -215,23 +251,23 @@ function Studentmainpage() {
             <h3 className="font-weight-light ">Your Profile</h3>
             <span className="line mb-5"></span>
             <h5 className="mb-3">CPC course</h5>
-            <p className="mt-20"><strong>Course: </strong>Javascript</p>
-            <p className="mt-20"><strong>CPCId: </strong>#12345</p>
+            <p className="mt-20"><strong>Course: </strong>{student.course}</p>
+            <p className="mt-20"><strong>CPCId: </strong>{student.cpcid}</p>
 
-            <button className="btn btn-outline-danger"><i className="icon-down-circled2 "></i>Update Profile</button>
+            <button className="btn btn-info" onClick={()=>getcursor(student.cpcid)}><i className="icon-down-circled2 "></i>Update Profile</button>
             </div>
             <div className="col-lg-4 about-card mt-4">
             <h3 className="font-weight-light">Personal Info</h3>
             <span className="line mb-5"></span>
             <ul className="mt40 info list-unstyled">
-            <li ><strong style={{float:"left",marginRight:"2%"}}>Date of Joining</strong>: 09/13/1996</li>
+            <li ><strong style={{float:"left",marginRight:"2%"}}>Date of Joining</strong>:<input disabled style={{float:"right"}} placeholder={student.month} className="outline-none"/></li>
             <hr/>
-            <li><strong style={{float:"left",marginRight:"2%"}}>Email</strong>: info @website.com</li>
+            <li><strong style={{float:"left",marginRight:"2%"}}>Email</strong>: <input id="textbox"style={{float:"right"}} placeholder={student.email}onChange={(e) => setemail(e.target.value)} className="outline-none"/></li>
             <hr/>
-            <li><strong style={{float:"left",marginRight:"2%"}}>Phone</strong>: + (123) 456-7890</li>
+            <li><strong style={{float:"left",marginRight:"2%"}}>Phone</strong>:<input id="textbox"style={{float:"right"}} placeholder={student.phone} onChange={(e) => setphone(e.target.value)} className="outline-none"/> </li>
                 {/* <!-- <li><span></span> : John_Doe </li> --> */}
             <hr/>
-            <li><strong style={{float:"left",marginRight:"2%"}}>Address</strong>: 12345 Fake ST NoWhere AB Country.</li>
+            <li><strong style={{float:"left",marginRight:"2%"}}>Address</strong>:<input id="textbox"style={{float:"right"}} placeholder={student.address}onChange={(e) => setaddress(e.target.value)} className="outline-none"/></li>
             <hr/>
 
             </ul>
@@ -250,7 +286,7 @@ function Studentmainpage() {
                 {/* <!-- <div className="col-1 text-danger pt-1"><i className="ti-widget icon-lg"></i></div> --> */}
             <div className="col-10 ml-auto mr-3">
             <h6>Course Fees</h6>
-            <p className="subtitle">2000</p>
+            <p className="subtitle">{student.amount}</p>
             <hr/>
             </div>
             </div>
