@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
+
 // import "./showstudent.css";
 function Managestudents() {
   var [students, setStudents] = useState("");
@@ -22,27 +23,22 @@ function Managestudents() {
     "6:00-8:00PM",
     "8:00-10:00PM",
   ];
-  var batch1=[]
-  const setbatch = (e,p,batch) => {
+  var batch1 = [];
+  const setbatch = (e, p, batch) => {
     // e.preventDefault();
     // console.log(e);
-    if(batch.includes(e)==false){
+    if (batch.includes(e) == false) {
       batch.push(e);
-      document.getElementById(e+p).className="text-success bg-white";
-
-    }
-    else{
-       var index = batch.indexOf(e);
-       console.log(index);
-        batch.splice(index, 1);
-      document.getElementById(e+p).className="";
+      document.getElementById(e + p).className = "text-success bg-white";
+    } else {
+      var index = batch.indexOf(e);
+      console.log(index);
+      batch.splice(index, 1);
+      document.getElementById(e + p).className = "";
     }
     console.log(batch);
-    batch1=batch;
-
-
-
-  }
+    batch1 = batch;
+  };
   function click1(bat, cpc) {
     // document.getElementById("1a").setAttribute("id", "democlass");
     // alert(bat);
@@ -64,22 +60,56 @@ function Managestudents() {
     // console.log(cpc);
     setTimeout(() => {
       // console.log('Hello, World!')
-      
-      document.getElementById("textbox"+cpc).focus();
+
+      document.getElementById("textbox" + cpc).focus();
     }, 50);
+  }
+  function deletestudent(cid,name,email) {
+      //Runs only on the first render
+  
+    
+    if (window.confirm("Are you sure to discontinue the student") == true) {
+      // text = "You pressed OK!";
+    // alert("hit");
+    var ds = { cpcid: cid,name:name,email:email };
+    fetch("http://localhost:3000/deletestudent", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(ds),
+    })
+      .then((res) => res.json())
+      .then((data) => {
 
+      })
+      .catch((err) => console.log(err));
+    } else {
+      // text = "You canceled!";
+      alert("student not deleted");
+    }
+    window.location.reload();
+    
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
 
+    
   }
 
   function getcursor(oldcpcid) {
-    document.getElementById("update"+oldcpcid).className="btn btn-success mt-3";
-    document.getElementById("update"+oldcpcid).innerHTML="profile updated";
+    document.getElementById("update" + oldcpcid).className =
+      "btn btn-success mt-3";
+    document.getElementById("update" + oldcpcid).innerHTML = "profile updated";
 
     setTimeout(() => {
       // console.log('Hello, World!')
-      document.getElementById("update"+oldcpcid).className="btn btn-info mt-3";
-    document.getElementById("update"+oldcpcid).innerHTML="update again";
-
+      document.getElementById("update" + oldcpcid).className =
+        "btn btn-info mt-3";
+      document.getElementById("update" + oldcpcid).innerHTML = "update again";
     }, 5000);
 
     //  alert("hi: "+oldcpcid);
@@ -91,7 +121,7 @@ function Managestudents() {
       password: password,
       phone: phone,
       name: name,
-      batch:batch1,
+      batch: batch1,
       oldcpcid: oldcpcid,
     };
     console.log(user);
@@ -111,9 +141,15 @@ function Managestudents() {
       .then((data) => {})
       .catch((err) => console.log(err));
   }
+const dataFetchedRef = useRef(false);
+
 
   useEffect(() => {
     //Runs only on the first render
+
+        if (dataFetchedRef.current) return;
+      dataFetchedRef.current = true;
+    
 
     fetch("http://localhost:3000/showstudentfees", {
       method: "GET",
@@ -196,7 +232,7 @@ function Managestudents() {
                                   data-target={"#" + data.email}
                                   aria-expanded="false"
                                   aria-controls="collapseExample"
-                                  onClick={() => click1(data.batch,data.cpcid)}
+                                  onClick={() => click1(data.batch, data.cpcid)}
                                 >
                                   view profile
                                 </button>
@@ -228,17 +264,27 @@ function Managestudents() {
                                                 <div className="mt-3">
                                                   <h4>{data.name}</h4>
                                                   <p className="text-muted font-size-sm">
+                                                    {data.cpcid}
+                                                  </p>
+                                                 
+                                                  <p className="text-muted font-size-sm">
                                                     {data.course}
                                                   </p>
-                                                  <button className="btn btn-primary mr-3">
+                                                  <button
+                                                    className="btn btn-primary mr-3"
+                                                    onClick={() =>
+                                                      deletestudent(
+                                                        data.cpcid,data.name,data.email
+                                                      )
+                                                    }
+                                                  >
                                                     Discontinue
                                                   </button>
                                                   <button className="btn btn-outline-primary ml-2">
                                                     Message
                                                   </button>
                                                 </div>
-                                                <div className="row">
-                                                 </div>
+                                                <div className="row"></div>
                                               </div>
                                             </div>
                                           </div>
@@ -258,7 +304,7 @@ function Managestudents() {
                                                     onChange={(e) =>
                                                       setname(e.target.value)
                                                     }
-                                                    id={"textbox"+data.cpcid}
+                                                    id={"textbox" + data.cpcid}
                                                     placeholder={data.name}
                                                   />
                                                 </div>
@@ -266,7 +312,9 @@ function Managestudents() {
                                               <hr></hr>
                                               <div className="row">
                                                 <div className="col-sm-3">
-                                                  <h6 className="mb-0">Cpcid</h6>
+                                                  <h6 className="mb-0">
+                                                    Cpcid
+                                                  </h6>
                                                 </div>
                                                 <div className="col-sm-9 ">
                                                   {/* {data.course} */}
@@ -283,7 +331,9 @@ function Managestudents() {
                                               <hr></hr>
                                               <div className="row">
                                                 <div className="col-sm-3">
-                                                  <h6 className="mb-0">Course</h6>
+                                                  <h6 className="mb-0">
+                                                    Course
+                                                  </h6>
                                                 </div>
                                                 <div className="col-sm-9 ">
                                                   {/* {data.course} */}
@@ -300,7 +350,9 @@ function Managestudents() {
                                               <hr></hr>
                                               <div className="row">
                                                 <div className="col-sm-3">
-                                                  <h6 className="mb-0">Email</h6>
+                                                  <h6 className="mb-0">
+                                                    Email
+                                                  </h6>
                                                 </div>
                                                 <div className="col-sm-9 ">
                                                   <input
@@ -316,7 +368,9 @@ function Managestudents() {
                                               <hr></hr>
                                               <div className="row">
                                                 <div className="col-sm-3">
-                                                  <h6 className="mb-0">Course</h6>
+                                                  <h6 className="mb-0">
+                                                    Course
+                                                  </h6>
                                                 </div>
                                                 <div className="col-sm-9 ">
                                                   {/* {data.course} */}
@@ -334,7 +388,9 @@ function Managestudents() {
                                               <hr></hr>
                                               <div className="row">
                                                 <div className="col-sm-3">
-                                                  <h6 className="mb-0">Mobile</h6>
+                                                  <h6 className="mb-0">
+                                                    Mobile
+                                                  </h6>
                                                 </div>
                                                 <div className="col-sm-9 ">
                                                   {/* {data.phone} */}
@@ -351,7 +407,9 @@ function Managestudents() {
                                               <hr></hr>
                                               <div className="row">
                                                 <div className="col-sm-3">
-                                                  <h6 className="mb-0">Address</h6>
+                                                  <h6 className="mb-0">
+                                                    Address
+                                                  </h6>
                                                 </div>
                                                 <div className="col-sm-9 ">
                                                   {/* {data.address} */}
@@ -370,19 +428,19 @@ function Managestudents() {
                                             </div>
                                           </div>
                                           <div className="col-sm-12">
-                                                    <a
-                                                    id={"update"+data.cpcid}
-                                                      className="btn btn-info mt-1"
-                                                      //   target="__blank"
-                                                      //   href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills"
-                                                      onClick={() =>
-                                                        getcursor(data.cpcid)
-                                                      }
-                                                    >
-                                                      Update Profile 
-                                                    </a>
-                                                  </div>
-                                                
+                                            <a
+                                              id={"update" + data.cpcid}
+                                              className="btn btn-info mt-1"
+                                              //   target="__blank"
+                                              //   href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills"
+                                              onClick={() =>
+                                                getcursor(data.cpcid)
+                                              }
+                                            >
+                                              Update Profile
+                                            </a>
+                                          </div>
+
                                           <table className="mt-3">
                                             <thead>
                                               <tr>
@@ -407,7 +465,13 @@ function Managestudents() {
                                                       days[data1 - 1] +
                                                       data.cpcid
                                                     }
-                                                    onClick={()=> setbatch("1"+days[data1-1],data.cpcid,data.batch)}
+                                                    onClick={() =>
+                                                      setbatch(
+                                                        "1" + days[data1 - 1],
+                                                        data.cpcid,
+                                                        data.batch
+                                                      )
+                                                    }
                                                     scope="col"
                                                   >
                                                     {times[data1 - 1]}
@@ -418,8 +482,13 @@ function Managestudents() {
                                                       days[data1 - 1] +
                                                       data.cpcid
                                                     }
-                                                    onClick={()=> setbatch("2"+days[data1-1],data.cpcid,data.batch)}
-
+                                                    onClick={() =>
+                                                      setbatch(
+                                                        "2" + days[data1 - 1],
+                                                        data.cpcid,
+                                                        data.batch
+                                                      )
+                                                    }
                                                     scope="col"
                                                   >
                                                     {times[data1 - 1]}
@@ -430,8 +499,13 @@ function Managestudents() {
                                                       days[data1 - 1] +
                                                       data.cpcid
                                                     }
-                                                    onClick={()=> setbatch("3"+days[data1-1],data.cpcid,data.batch)}
-
+                                                    onClick={() =>
+                                                      setbatch(
+                                                        "3" + days[data1 - 1],
+                                                        data.cpcid,
+                                                        data.batch
+                                                      )
+                                                    }
                                                     scope="col"
                                                   >
                                                     {times[data1 - 1]}
@@ -442,8 +516,13 @@ function Managestudents() {
                                                       days[data1 - 1] +
                                                       data.cpcid
                                                     }
-                                                    onClick={()=> setbatch("4"+days[data1-1],data.cpcid,data.batch)}
-
+                                                    onClick={() =>
+                                                      setbatch(
+                                                        "4" + days[data1 - 1],
+                                                        data.cpcid,
+                                                        data.batch
+                                                      )
+                                                    }
                                                     scope="col"
                                                   >
                                                     {times[data1 - 1]}
@@ -454,8 +533,13 @@ function Managestudents() {
                                                       days[data1 - 1] +
                                                       data.cpcid
                                                     }
-                                                    onClick={()=> setbatch("5"+days[data1-1],data.cpcid,data.batch)}
-
+                                                    onClick={() =>
+                                                      setbatch(
+                                                        "5" + days[data1 - 1],
+                                                        data.cpcid,
+                                                        data.batch
+                                                      )
+                                                    }
                                                     scope="col"
                                                   >
                                                     {times[data1 - 1]}
@@ -466,8 +550,13 @@ function Managestudents() {
                                                       days[data1 - 1] +
                                                       data.cpcid
                                                     }
-                                                    onClick={()=> setbatch("6"+days[data1-1],data.cpcid,data.batch)}
-
+                                                    onClick={() =>
+                                                      setbatch(
+                                                        "6" + days[data1 - 1],
+                                                        data.cpcid,
+                                                        data.batch
+                                                      )
+                                                    }
                                                     scope="col"
                                                   >
                                                     {times[data1 - 1]}
@@ -478,8 +567,13 @@ function Managestudents() {
                                                       days[data1 - 1] +
                                                       data.cpcid
                                                     }
-                                                    onClick={()=> setbatch("7"+days[data1-1],data.cpcid,data.batch)}
-
+                                                    onClick={() =>
+                                                      setbatch(
+                                                        "7" + days[data1 - 1],
+                                                        data.cpcid,
+                                                        data.batch
+                                                      )
+                                                    }
                                                     scope="col"
                                                   >
                                                     {times[data1 - 1]}

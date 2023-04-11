@@ -1,13 +1,13 @@
 require('dotenv').config();
 
-const express = require('express');
-const mongoose = require('mongoose');
-const mongoString = "mongodb://127.0.0.1:27017/studentcpc";
+var express = require('express');
+var mongoose = require('mongoose');
+var mongoString = "mongodb://127.0.0.1:27017/studentcpc";
 
 mongoose.connect(mongoString);
-const database = mongoose.connection;
-const cors = require("cors");
-const app = express();
+var database = mongoose.connection;
+var cors = require("cors");
+var app = express();
 
 app.use(cors(
     {
@@ -22,7 +22,7 @@ database.on('error', (error) => {
 database.once('connected', () => {
     console.log('Database Connected');
 })
-const fdetails = new mongoose.Schema({
+var fdetails = new mongoose.Schema({
     transactionid: {
         required: true,
         type: String
@@ -37,7 +37,7 @@ const fdetails = new mongoose.Schema({
     }
 })
 
-const userSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
     name: {
         required: true,
         type: String
@@ -94,7 +94,7 @@ const userSchema = new mongoose.Schema({
 
 { timestamps: true })
 
-const Model = mongoose.model('student', userSchema);
+var Model = mongoose.model('student', userSchema);
 
 
 app.use(express.json());
@@ -103,9 +103,69 @@ app.use(express.json());
 app.post('/login', async (req, res) => {
     try{
         console.log(req.body.cpcid);
-        const data = await Model.find({cpcid: req.body.cpcid},)
+        var data = await Model.find({cpcid: req.body.cpcid},)
         // console.log(req.body.username)
         res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+// app.post('/updatepend', async (req, res) => {
+//     try{
+//         // console.log(req.body.cpcid);
+//         // console.log(req.body.tid);
+
+//         // var data = await Model.find({cpcid: "cpcid3", "feedetails" : { "$elemMatch" : { "transactionid" : "#first" }} })
+//         // await Model.findByIdAndUpdate(data._id, {
+//         //     feedetails: {transactionid:"jhjvjh"}
+//         //     // registered:1;
+            
+//         //   });
+//           res.json(data);
+         
+//     }
+//     catch(error){
+//         res.status(500).json({message: error.message})
+//     }
+// })
+app.post('/deletestudent', async (req, res) => {
+console.log("deleted");
+    try{
+        var result = await Model.deleteOne({cpcid: req.body.cpcid})
+        if (result.deletedCount === 1) {
+            console.log("Successfully deleted one document.");
+            var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'sayandip31072003@gmail.com',
+          pass: 'ovcvjfosjxcyenyh'
+        }
+
+      });
+      var mailOptions = {
+        from: 'sayandip31072003@gmail.com',
+        to: req.body.email,
+        subject: 'Subject',
+        
+        html: `<div>
+        <h1>Dear `+req.body.name+`,</h1>
+        <p>Your name has been removed from CPC Education.If this is not expected kindly contact to the centre.</p>`
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+       console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        //   break;
+          // do something useful
+        }
+      });
+    
+          } else {
+            console.log("No documents matched the query. Deleted 0 documents.");
+          }
     }
     catch(error){
         res.status(500).json({message: error.message})
@@ -130,7 +190,7 @@ app.get('/', (req, res) => {
     //   });
     app.get('/showstudentfees', async (req, res) => {
         try{
-            const data = await Model.find();
+            var data = await Model.find();
             res.json(data)
             //console.log(data)
         }
@@ -140,7 +200,7 @@ app.get('/', (req, res) => {
     })
     app.post('/getbatch', async (req, res) => {
         try{
-            const data = await Model.find();
+            var data = await Model.find();
             res.json(data)
             //console.log(data)
         }
@@ -151,7 +211,7 @@ app.get('/', (req, res) => {
     app.post('/loginid', async (req, res) => {
         try{
             console.log("hit");
-            const data = await Model.findOne({cpcid: req.body.cpcid},)
+            var data = await Model.findOne({cpcid: req.body.cpcid},)
             res.json(data)
             //console.log(data)
         }
@@ -168,7 +228,7 @@ app.get('/', (req, res) => {
 app.post('/Addstudent', async (req, res) => {
     console.log("here"+req.body.username)
     
-    var userfees={transactionid:"#first",fees:2000,status:0};
+    var userfees={transactionid:req.body.cpcid+"#first",fees:2000,status:0};
     // var userfees= {
     //     "data":[
     //         {
@@ -194,15 +254,15 @@ app.post('/Addstudent', async (req, res) => {
     
    
     try {
-        const checkmail = await Model.findOne({email: req.body.email},)
+        var checkmail = await Model.findOne({email: req.body.email},)
         if(checkmail==null){
             // console.log(checkmail);
-            const data = new Model({
+            var data = new Model({
         
                 name: req.body.username,
                 password:"gh",
                 // cpcid:""
-                cpcid:"cpcid",
+                cpcid:req.body.cpcid,
                 amount:req.body.amount,
                 password:"hj",
                 email: req.body.email,
@@ -218,7 +278,7 @@ app.post('/Addstudent', async (req, res) => {
             }); 
         
         
-        const dataToSave = await data.save();
+        var dataToSave = await data.save();
         res.status(200).json(dataToSave)
         // res.json(1);
         }
@@ -235,7 +295,7 @@ app.post('/Addstudent', async (req, res) => {
 app.post('/registerstudent', async (req, res) => {
     try{
         console.log(req.body.cpcid);
-        const student = await Model.findOne({cpcid: req.body.cpcid,registered:"0"},{})
+        var student = await Model.findOne({cpcid: req.body.cpcid,registered:"0"},{})
         // console.log(req.body.username)
         console.log(student);
         if(student==null){
@@ -262,7 +322,7 @@ app.post('/registerstudent', async (req, res) => {
 app.post('/updatestudent', async (req, res) => {
     try{
         console.log(req.body.cpcid);
-        const student = await Model.findOne({cpcid: req.body.oldcpcid},{})
+        var student = await Model.findOne({cpcid: req.body.oldcpcid},{})
         // console.log(req.body.username)
         // console.log(student);
         if(student==null){
@@ -319,13 +379,13 @@ console.log(mydata);
 
 
 
-//         // const student = await Model.findOne({cpcid: req.body.cpcid})
+//         // var student = await Model.findOne({cpcid: req.body.cpcid})
 
 //         // res.json(student)
 
         
 
-//         const data1 = await Model.findOne({cpcid: "cpc12345"},)
+//         var data1 = await Model.findOne({cpcid: "cpc12345"},)
 //         // console.log(data)
 
 //         res.json(data1)
@@ -336,11 +396,11 @@ console.log(mydata);
 
 // app.post("/postfees")
 app.post('/addfees', async (req, res) => {
-    // const student = await studentModel.findById(req.body.sid)
-    const student = await Model.findOne({cpcid: "cpc12345"},)
+    // var student = await studentModel.findById(req.body.sid)
+    var student = await Model.findOne({cpcid: "cpc12345"},)
 
-    // const fees= await feeModel.findOne({month: req.body.month,amount:req.body.amount})
-    const fees = {fees:"276",status:"0",transactionid:"556453"};
+    // var fees= await feeModel.findOne({month: req.body.month,amount:req.body.amount})
+    var fees = {fees:"276",status:"0",transactionid:"556453"};
     // console.log("student: " + student + " fees: " + fees)
 
     try {
@@ -355,6 +415,79 @@ app.post('/addfees', async (req, res) => {
     }
    
 })
+
+
+
+app.post("/sendmailreg",(req,res)=>{
+    var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'sayandip31072003@gmail.com',
+          pass: 'ovcvjfosjxcyenyh'
+        }
+      });
+      var showbatch="";
+      var times=["7:00-9:00AM","9:00-12:00PM","12:00-2:00PM","2:00-4:00PM","4:00-6:00PM","6:00-8:00PM","8:00-10:00PM"];
+var days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+var keys=['a','b','c','d','e','f','g'];
+for(var i=0;i<req.body.batch.length;i++){
+    var s1=req.body.batch[i][0];
+    var s2=req.body.batch[i][1];
+    var s3=keys.indexOf(s2);
+    console.log(s2+" "+s3);
+     showbatch=showbatch+days[s1-1]+" : "+times[s3]+"<hr/>"
+
+    
+}
+// document.getElementById("show").innerHTML=showbatch;
+
+    var mailOptions = {
+        from: 'sayandip31072003@gmail.com',
+        to: req.body.email,
+        subject: 'Subject',
+        
+        html: `<div>
+        <h1>Dear `+req.body.username+`,</h1>
+        <p>Welcome to CPC Education.you have enrolled through this email id.</p>
+        <article>Kindly register through your CPCid and Email to the below given link.</article>
+        <div>
+            <p><strong>CPCid</strong>:`+req.body.cpcid+`</p>
+            <p><strong>Email</strong>:`+req.body.email+`</p>
+        </div>
+        <strong>Your enrolled course is:javascript</strong>
+
+        <strong>Your monthly fees is:`+req.body.amount+`</strong>
+        <br />
+        Your Enrolled batch:
+        <table>
+            <thead style="border:1px solid black">
+                <td style="border:1px solid black">Date and time</td>
+            </thead>
+            <br/>
+            <hr/>
+            <tbody id="show">
+            `+showbatch+`
+                
+               
+            </tbody>
+        </table>
+        
+    </div>`
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+       console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        //   break;
+          // do something useful
+        }
+      });
+   
+    })
+    
+    
 
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)

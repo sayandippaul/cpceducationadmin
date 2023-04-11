@@ -1,11 +1,14 @@
 import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
 // import "./showstudent.css";
+
 function Showstudentfees() {
   const [students, setStudents] = useState([]);
+  const [fees, setfees] = useState([]);
+
   useEffect(() => {
     //Runs only on the first render
-
+    
     fetch("http://localhost:3000/showstudentfees", {
       method: "GET",
       headers: {
@@ -26,10 +29,58 @@ function Showstudentfees() {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  
   const [filteredList, setFilteredList] = new useState([]);
   // const [students, setStudents] =
 
+  function setpend(tid,oldcpcid){
+    // alert(tid);
+  
+  var user1={cpcid:oldcpcid,tid:tid};
+    fetch("http://localhost:3000/updatepend", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify(user1)
+    })
+      .then(res => res.json())
+      .then(data => {
+  console.log(data);
+        // window.location.replace("login.js");
+        // alert("success");
+        setfees(data.feedetails)
+        // console.log(fees);
+        
+      })
+    
+      .catch(err => console.log(err));
+  
+    // const user = {oldcpcid:oldcpcid,feedetails:};
+    //         console.log(user);
+  
+    //         var studentbatch=[];
+    //     fetch("http://localhost:3000/updatestudent", {
+    //         method: "POST",
+    //         headers: {
+    //           Accept: "application/json",
+    //           "Content-Type": "application/json",
+    //           "Access-Control-Allow-Headers": "Content-Type",
+    //           "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    //           "Access-Control-Allow-Origin": "*"
+    //         },
+    //         body: JSON.stringify(user)
+    //       })
+    //       .then(res => res.json())
+    //         .then(data => {
+    //         })
+    //         .catch(err => console.log(err));
+      
+  }
   const filterBySearch = (event) => {
     // Access input value
     const query = event.target.value;
@@ -41,6 +92,9 @@ function Showstudentfees() {
     });
     // Trigger render with updated values
     setFilteredList(updatedList);
+
+
+    
   
   };
 
@@ -375,7 +429,7 @@ function Showstudentfees() {
                                                   {/* <td onClick={() => checkstatus(e.status,e.transactionid)} id={e.transactionid}>                                                 
                                                   </td>
                                                    */}
-                                                   <td>{e.status==0 ? <span class="badge bg-light text-dark"> Pending</span> : <span class="badge bg-success">Paid</span> }</td>
+                                                   <td>{e.status==0 ? <span class="badge bg-light text-dark" onClick={()=>setpend(e.transactionid,data.cpcid)}> Pending</span> : <span class="badge bg-success">Paid</span> }</td>
                              </tr>
                            </>
                         ))}

@@ -1,5 +1,27 @@
 function First()
-{
+{fetch("http://localhost:3000/showstudentfees", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Origin": "*",
+    },
+    // body: JSON.stringify(user)
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      // console.log(data[0].feedetailstransactionid);
+
+    //   setFilteredList(data);
+    //   setStudents(data);
+    console.log(data.length);
+    
+    localStorage.setItem("noofstudent",data.length-1);
+    })
+    .catch((err) => console.log(err));
+
     return (
         <>
         
