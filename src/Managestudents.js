@@ -407,7 +407,7 @@ const dataFetchedRef = useRef(false);
                                               <div className="row">
                                                 <div className="col-sm-3">
                                                   <h6 className="mb-0">
-                                                    Address
+                                                    Password
                                                   </h6>
                                                 </div>
                                                 <div className="col-sm-9 ">
