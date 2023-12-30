@@ -31,6 +31,7 @@ function First()
       
 
         fetch(url+"/showadmin", {
+          // mode: 'no-cors',
             method: "POST",
             headers: {
               Accept: "application/json",

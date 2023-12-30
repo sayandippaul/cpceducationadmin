@@ -293,7 +293,7 @@ cpcidnew=cpciddata[0].cpcid;
   else{
     courseidnew=courseiddata[0].courseid;
   }
-  if(courseiddata.length== 0){
+  if(qiddata.length== 0){
     questionidnew="#q0";
  }
  else{

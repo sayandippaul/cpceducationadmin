@@ -1,5 +1,5 @@
-// export var url = 'http://localhost:3000';
-export var url = 'https://cpceducation.onrender.com';
+export var url = 'http://localhost:3000';
+// export var url = 'https://cpceducation.onrender.com';
 // export function doSomething() {
 //   alert('Something happened!');
 // }
