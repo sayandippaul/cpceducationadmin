@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import { url } from './url.js';
+import { adminurl } from './adminurl.js';
 
 // import "./showstudent.css";
 function Admission() {
@@ -18,7 +19,8 @@ function Admission() {
     var  approvedetails = { studentname: name, email: email, phone: phone,courseid:cid,coursename:cname,coursecatagory:ccata,coursefees:cfees };
     var approvestring=JSON.stringify(approvedetails);
     localStorage.setItem("admissiondetails",approvestring);
-    window.location.replace("http://localhost:3002/Addstudent");
+    // window.location.replace("http://localhost:3002/Addstudent");
+    window.location.replace(adminurl+"/Addstudent");
 
     
   }
