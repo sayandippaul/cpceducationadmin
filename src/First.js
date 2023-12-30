@@ -1,12 +1,16 @@
 import { useState, useEffect,useRef } from "react";
-
-// import "./showstudent.css";
+// import url from "../src/url";
 
 
 function First()
+
 {
 
-
+  // alert(hi);
+  // console.log(hi);
+  // alert(hi);
+  // const myScript = require('./url.js');
+  // console.log(myScript.hi);z
 
 
 
@@ -22,9 +26,9 @@ function First()
 
     useEffect(()=>{
 
-        
+      // alert(url.name);
 
-        fetch("http://localhost:3000/showadmin", {
+        fetch(process.env.url+"/showadmin", {
             method: "POST",
             headers: {
               Accept: "application/json",

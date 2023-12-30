@@ -2,15 +2,12 @@ require("dotenv").config();
 
 var express = require("express");
 var mongoose = require("mongoose");
-// var mongoString = "mongodb://127.0.0.1:27017/studentcpc";
-// var mongoString="mongodb+srv://cpceducation2003:sayandip2003@cpceducation.8nw5dbr.mongodb.net/cpceducation?retryWrites=true&w=majority";
-var mongoString="mongodb+srv://cpceducationcenter2003:sayandip2003@cpceducation.v3ssfgh.mongodb.net/cpceducation?retryWrites=true&w=majority"
-// var mongostringglobal="mongodb+srv://sayandip:sayandip2003@dropling.beoaja8.mongodb.net/dropling?retryWrites=true&w=majority";
-
+mongoString=process.env.databaseconnectionstring;
 mongoose.connect(mongoString);
 var database = mongoose.connection;
 var cors = require("cors");
 var app = express();
+const port = process.env.PORT || 3000
 
 // var montharr=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
 var montharr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -522,12 +519,12 @@ app.post("/updatepend", async (req, res) => {
       var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "sayandip31072003@gmail.com",
-          pass: "ovcvjfosjxcyenyh",
+          user: process.env.mail,
+          pass: process.env.mailpassword,
         },
       });
       var mailOptions = {
-        from: "sayandip31072003@gmail.com",
+        from: process.env.mail,
         to: req.body.email,
         subject: "Subject",
 
@@ -570,12 +567,12 @@ app.post("/deletestudent", async (req, res) => {
       var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "sayandip31072003@gmail.com",
-          pass: "ovcvjfosjxcyenyh",
+          user: process.env.mail,
+          pass: process.env.mailpassword,
         },
       });
       var mailOptions = {
-        from: "sayandip31072003@gmail.com",
+        from: process.env.mail,
         to: req.body.email,
         subject: "Subject",
 
@@ -626,12 +623,12 @@ app.post("/rejectadmission", async (req, res) => {
       var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "sayandip31072003@gmail.com",
-          pass: "ovcvjfosjxcyenyh",
+          user: process.env.mail,
+          pass: process.env.mailpassword,
         },
       });
       var mailOptions = {
-        from: "sayandip31072003@gmail.com",
+        from: process.env.mail,
         to: req.body.email,
         subject: "Subject",
 
@@ -1197,12 +1194,12 @@ app.post("/sendreply", async (req, res) => {
       var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "sayandip31072003@gmail.com",
-          pass: "ovcvjfosjxcyenyh",
+          user: process.env.mail,
+          pass: process.env.mailpassword,
         },
       });
       var mailOptions = {
-        from: "sayandip31072003@gmail.com",
+        from: process.env.mail,
         to: req.body.email,
         subject: "Subject",
 
@@ -1299,8 +1296,8 @@ app.post("/sendmailreg", (req, res) => {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "sayandip31072003@gmail.com",
-      pass: "ovcvjfosjxcyenyh",
+      user:process.env.mail ,
+      pass: process.env.mailpassword,
     },
   });
   var showbatch = "Date And Time<hr/>";
@@ -1333,7 +1330,7 @@ app.post("/sendmailreg", (req, res) => {
   // document.getElementById("show").innerHTML=showbatch;
 
   var mailOptions = {
-    from: "sayandip31072003@gmail.com",
+    from: process.env.mail,
     to: req.body.email,
     subject: "Subject",
 
@@ -1432,6 +1429,7 @@ app.post('/updateadmin', async (req, res) => {
 })
 
 
-app.listen(3000, () => {
+
+app.listen(port, () => {
   console.log(`Server Started at ${3000}`);
 });

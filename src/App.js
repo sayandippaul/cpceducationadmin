@@ -26,6 +26,10 @@ var sora=1;
 var val=localStorage.getItem("admin");
 // var sora=localStorage.getItem("sora");
 function App() {
+
+
+
+
   if(val==0){
 
   }
