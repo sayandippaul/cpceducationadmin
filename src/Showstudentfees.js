@@ -62,7 +62,7 @@ var montharr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
 
     let feesnew = prompt("Please enter New fees",f );
     var fees1={cpcid:cpcid,amount:feesnew};
-    fetch(url+"/updatefees", {
+    fetch(url+"/updatepend", {
       method: "POST",
       headers: {
         Accept: "application/json",
