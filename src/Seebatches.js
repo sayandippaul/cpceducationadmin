@@ -228,13 +228,13 @@ function Seebatches() {
                           {/* // </div> */}
                           <tr>
 
-                          <td id={n1+"a"}  scope="col">hi</td>
-                          <td id={n1+"b"}  scope="col">hi</td>
-                          <td id={n1+"c"}  scope="col">hi</td>
-                          <td id={n1+"d"}  scope="col">hi</td>
-                          <td id={n1+"e"}  scope="col">hi</td>
-                          <td id={n1+"f"}  scope="col">hi</td>
-                          <td id={n1+"g"}  scope="col">hi</td>
+                          <td id={n1+"a"}  scope="col">No Students</td>
+                          <td id={n1+"b"}  scope="col">No Students</td>
+                          <td id={n1+"c"}  scope="col">No Students</td>
+                          <td id={n1+"d"}  scope="col">No Students</td>
+                          <td id={n1+"e"}  scope="col">No Students</td>
+                          <td id={n1+"f"}  scope="col">No Students</td>
+                          <td id={n1+"g"}  scope="col">No Students</td>
 
                         </tr>
                       

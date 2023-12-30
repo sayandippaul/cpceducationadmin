@@ -221,7 +221,7 @@ const dataFetchedRef = useRef(false);
                         {filteredList.map((data) => (
                           <>
                             <tr>
-                              <th scope="row">2</th>
+                              <th scope="row">{data.cpcid}</th>
                               <td>{data.name}</td>
                               <td>{data.course}</td>
                               <td>
@@ -280,9 +280,7 @@ const dataFetchedRef = useRef(false);
                                                   >
                                                     Discontinue
                                                   </button>
-                                                  <button className="btn btn-outline-primary ml-2">
-                                                    Message
-                                                  </button>
+                                                  
                                                 </div>
                                                 <div className="row"></div>
                                               </div>

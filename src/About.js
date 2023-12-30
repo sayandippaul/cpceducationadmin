@@ -4,7 +4,7 @@ function About()
         <>
         
         {/* <button onClick={clickme}>click to fetch value from other page</button> */}
-        <div>
+        <div class="text-light">
         hi
         </div>
         </>

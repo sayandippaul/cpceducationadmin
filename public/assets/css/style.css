@@ -158,6 +158,7 @@
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     transition: .5s;
+    display: none;
 }
 
 .sidebar .navbar .dropdown-toggle[aria-expanded=true]::after {
@@ -285,4 +286,21 @@
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
     border-color: var(--primary);
+}
+#admin{
+    margin-left: -45px;
+}
+#circle{
+    margin-bottom: -5px;
+}
+.shownotice{
+    height:0px;
+    /* width: 50px; */
+    padding: 5px;
+    border-radius: 100%;
+    margin-left: 10px;
+    position: relative;
+    /* background-color: red; */
+    border: 2px solid red;
+    color: white;
 }

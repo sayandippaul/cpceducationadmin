@@ -11,18 +11,24 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react
 import About from "./About";
 import First from "./First";
 // import "./login.js";
-import Loginsignup from "./Loginsignup";
-import Studentmainpage from "./Studentmainpage";
+// import Studentmainpage from "./Studentmainpage";
+// import Loginsignup from "./Loginsignup";
+
 
 // import {Routes, Route} from 'react-router-dom';
+const Loginsignup = React.lazy(() => import('./Loginsignup'));
+const Studentmainpage = React.lazy(() => import('./Studentmainpageold'));
+
 
 val=0;
-var sora=0;
+var sora=1;
 // localStorage.setItem("sora",0)
-var val=localStorage.getItem("app");
-var sora=localStorage.getItem("sora");
-
+var val=localStorage.getItem("admin");
+// var sora=localStorage.getItem("sora");
 function App() {
+  if(val==0){
+
+  }
   
  const closesidebar = () => {
     // console.log('button clicked');
@@ -36,30 +42,22 @@ function App() {
     document.querySelector(".sidebar").classList.toggle("open");
     //  val=true;
   };
+  // <React.Suspense fallback={<></>}>
+  //       {(CHOSEN_THEME === TYPE_OF_THEME.LIGHT_MODE) && <LightTheme />}
+  //       {(CHOSEN_THEME === TYPE_OF_THEME.DARK_MODE) && <DarkTheme />}
+  //     </React.Suspense>
 
   return (
+
     <div className="App">
       {val == 0 ? (
         
         <Loginsignup />
       ) : (
         <>
-          {/* <Loginsignup></Loginsignup> */}
-          {sora == 0 ? (
-        
-        <Studentmainpage />
-      ) : (
-        <>
-          {/* <Loginsignup></Loginsignup> */}
-
-          <Homenav></Homenav>
+         
+         <Homenav></Homenav>
           <Homeside></Homeside>
-          {/* <Homemain></Homemain> */}
-        </>
-      )}
-          {/* <Homenav></Homenav>
-          <Homeside></Homeside> */}
-          {/* <Homemain></Homemain> */}
         </>
       )}
     </div>

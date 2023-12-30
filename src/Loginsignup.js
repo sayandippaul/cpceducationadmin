@@ -9,6 +9,8 @@ import { Navigate } from "react-router";
 import First from "./First";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 // localStorage.setItem("app",0);
+// localStorage.setItem("admin",0);
+
 function Loginsignup()
 {
 const navigate = useNavigate();
@@ -23,29 +25,8 @@ const navigate = useNavigate();
     const[pass1,setpassword]=useState('')
     const container = document.getElementById('container');
     // console.log(container.classList)
-    function signin(){
-        // alert("hi");
-        localStorage.setItem("sora",0);
-        localStorage.setItem("app",1);
-        window.location.reload();
-        
-
-
-            // container.classList.remove("right-panel-active");
-            document.getElementById("container").className="container";
-            // document.getElementsByClassName("right-panel-active").style.display="none";
-    }
-    // function click(){
-    //     navigate("/First")
-
-    // }
-    function signup(){
-        // container.classList.add("right-panel-active");
-        document.getElementById("container").className="container right-panel-active";
-
-        // document.getElementsByClassName("right-panel-active").style.display="block";
-
-    }
+   
+    
     const clickme = (e) => {
         // alert(name+phone);
     e.preventDefault();
@@ -54,7 +35,7 @@ const navigate = useNavigate();
         // console.log("hi"+user.username);
         // console.log(user);
 
-        fetch("http://localhost:3000/login", {
+        fetch("http://localhost:3000/showadmin", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -63,48 +44,32 @@ const navigate = useNavigate();
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
             "Access-Control-Allow-Origin": "*"
           },
-          body: JSON.stringify(user)
+          // body: JSON.stringify(user)
         })
           .then(res => res.json())
           .then(data => {
     
             // window.location.replace("login.js");
             // alert("success");
-            console.log(data[0].password);
-            if(data[0].password==pass){
-                if(cpcid=="cpcbelgharia56"){
-                localStorage.setItem("sora",1);
-
-                }
-                else{
-                localStorage.setItem("sora",0);
-
-                }
-                // alert("login successful");
-                // const root = ReactDOM.createRoot(document.getElementById('root'));
-                // const navigate=useNavigate()
-                // navigate('/App')
-                // window.location.replace("index2.js");
-                localStorage.setItem("app",1);
-              localStorage.setItem("cpcid",cpcid);
-
-
-                // window.reload();
-                // location.reload();
-        window.location.reload();
-
-
-            }
-            else{
+            console.log(data);
+            if(cpcid==data.adminid && pass==data.password){
+          localStorage.setItem("admin",1);
+          alert("Welcome "+data.admin);
+          window.location.reload();
+        }
+        else{
                 alert("Wrong Credentials");
-                localStorage.setItem("app",0);
 
+          localStorage.setItem("admin",0);
 
-            }
+        }
+
+            
           })
           .catch(err => console.log(err));
     
-      }
+
+              }
 
 
 
@@ -168,27 +133,7 @@ const navigate = useNavigate();
 
 <div className="problem">
 <div className="container" id="container">
-	<div className="form-container sign-up-container">
-		<form onSubmit={register}>
-			<h1>New Admission</h1>
-			{/* <div className="social-container">
-				<a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-				<a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-				<a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
-			</div> */}
-			<span>Check your email for registration</span>
-			<input onChange={(e) => setcpcid1(e.target.value)} type="text" placeholder="Enter Provided Cpcid" />
-			<input onChange={(e) => setname(e.target.value)} type="text" placeholder="Name" />
-			<input onChange={(e) => setphone(e.target.value)} type="number" placeholder="Phone number" />
-			<input onChange={(e) => setaddress(e.target.value)} type="text" placeholder="Enter Address" />
-			<input onChange={(e) => setpassword(e.target.value)} type="password" placeholder="password" />
-
-
-
-			<button>Sign Up</button>
-		</form>
-	</div>
-	<div className="form-container sign-in-container">
+	<div className=" ">
 		<form onSubmit={clickme} action="#">
 			<h1>Sign in</h1>
 			{/* <div className="social-container">
@@ -196,29 +141,13 @@ const navigate = useNavigate();
 				<a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
 				<a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
 			</div> */}
-			<span> Use Your CPC Account</span>
-			<input onChange={(e) => setcpcid(e.target.value)} type="text" placeholder="Enter Your CPCid" />
+			<span>Admin Panel</span>
+			<input onChange={(e) => setcpcid(e.target.value)} type="text" placeholder="Enter AdminID" />
 			<input onChange={(e) => setpass(e.target.value)} type="password" placeholder="Password" />
 			<a href="#">Forgot your password?</a>
 
 			<button>Sign In</button>
 		</form>
-	</div>
-	<div className="overlay-container">
-		<div className="overlay">
-			<div className="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button className="ghost" id="signIn" onClick={signin}>Sign In</button>
-			</div>
-			<div className="overlay-panel overlay-right">
-				<h1>New Admission?</h1>
-				<p>Enter your personal details and Learn with CPC</p>
-                {/* <button onClick={click}>hoii</button> */}
-
-				<button className="ghost" id="signUp" onClick={signup}>Sign Up</button>
-			</div>
-		</div>
 	</div>
 </div>
 
@@ -228,6 +157,7 @@ const navigate = useNavigate();
         </>
     );
 }
+
 const container = document.getElementById('container');
 function signin(){
     // alert("hi");
