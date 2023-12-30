@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import { useState, useEffect, useRef } from "react";
+import { url } from './url.js';
 
 // import "./showstudent.css";
 function Feedback() {
@@ -14,7 +15,7 @@ function Feedback() {
       // text = "You pressed OK!";
       // alert("hit");
       var ds = { courseid: cid };
-      fetch("http://localhost:3000/deletecourse", {
+      fetch(url+"/deletecourse", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -58,7 +59,7 @@ function Feedback() {
     };
     console.log(user);
 
-    fetch("http://localhost:3000/sendreply", {
+    fetch(url+"/sendreply", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -82,7 +83,7 @@ function Feedback() {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
 
-    fetch("http://localhost:3000/showfeedback", {
+    fetch(url+"/showfeedback", {
       method: "GET",
       headers: {
         Accept: "application/json",

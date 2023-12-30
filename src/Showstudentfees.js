@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 // import { useState, useEffect } from "react";
 import { useState, useEffect, useRef } from "react";
+import { url } from './url.js';
 
 // import "./showstudent.css";
 
@@ -28,7 +29,7 @@ var montharr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
     // text = "You pressed OK!";
   // alert("hit");
   var ds = { cpcid: cid,name:name,email:email };
-  fetch("http://localhost:3000/deletestudent", {
+  fetch(url+"/deletestudent", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -61,7 +62,7 @@ var montharr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
 
     let feesnew = prompt("Please enter New fees",f );
     var fees1={cpcid:cpcid,amount:feesnew};
-    fetch("http://localhost:3000/updatefees", {
+    fetch(url+"/updatefees", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -100,7 +101,7 @@ var montharr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
     dataFetchedRef.current = true;
 
 
-    fetch("http://localhost:3000/addfeeseverymonth", {
+    fetch(url+"/addfeeseverymonth", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -119,7 +120,7 @@ var montharr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
 
     //Runs only on the first render
     
-    fetch("http://localhost:3000/showstudentfees", {
+    fetch(url+"/showstudentfees", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -149,7 +150,7 @@ var montharr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
     // alert(tid);
   
   var user1={cpcid:oldcpcid,tid:tid,email:email};
-    fetch("http://localhost:3000/updatepend", {
+    fetch(url+"/updatepend", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -182,7 +183,7 @@ var montharr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
     //         console.log(user);
   
     //         var studentbatch=[];
-    //     fetch("http://localhost:3000/updatestudent", {
+    //     fetch(url+"/updatestudent", {
     //         method: "POST",
     //         headers: {
     //           Accept: "application/json",

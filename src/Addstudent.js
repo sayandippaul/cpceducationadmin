@@ -2,6 +2,8 @@ import Button from "react-bootstrap/Button";
 import Placeholder from "react-bootstrap/Placeholder";
 import Form from "react-bootstrap/Form";
 import React, { useState, useEffect, useRef } from "react";
+import { url } from './url.js';
+
 // import "./login.js";
 
 // name email date id course
@@ -56,7 +58,7 @@ function showtopic(){
   console.log(topic);
 
   var topicobj={"name":topic};
-    fetch("http://localhost:3000/showtopic", {
+    fetch(url+"/showtopic", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -182,7 +184,7 @@ function showtopic(){
    
     // var  text = { username: name, email: email, month: month,amount:amount,batch:batch };
     function sendmail() {
-      fetch("http://localhost:3000/sendmailreg", {
+      fetch(url+"/sendmailreg", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -199,7 +201,7 @@ function showtopic(){
     }
     
     
-    fetch("http://localhost:3000/Addstudent", {
+    fetch(url+"/Addstudent", {
       method: "POST",
       headers: {
         Accept: "application/json",

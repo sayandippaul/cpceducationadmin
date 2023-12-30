@@ -4,6 +4,7 @@ import Homemain from './homemain';
 import Homeside from './homeside';
 import closesidebar from './template';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { url } from './url.js';
 
 function Homenav() {
 
@@ -12,7 +13,7 @@ function Homenav() {
 
      
 
-    fetch("http://localhost:3000/lastcpcid", {
+    fetch(url+"/lastcpcid", {
       method: "POST",
       headers: {
         Accept: "application/json",

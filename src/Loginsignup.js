@@ -3,6 +3,8 @@ import "./loginsignup.css";
 // import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { url } from './url.js';
+
 import React, { useState, useEffect } from 'react';
 import { Navigate } from "react-router";
 // import { useNavigate } from "react-router";
@@ -35,7 +37,7 @@ const navigate = useNavigate();
         // console.log("hi"+user.username);
         // console.log(user);
 
-        fetch("http://localhost:3000/showadmin", {
+        fetch(url+"/showadmin", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -80,7 +82,7 @@ const navigate = useNavigate();
     e.preventDefault();
     const user = { cpcid: cpcid1, password: pass1,address:address,phone:phone,name:name };
 
-    fetch("http://localhost:3000/registerstudent", {
+    fetch(url+"/registerstudent", {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -1,5 +1,6 @@
 import { useState, useEffect,useRef } from "react";
-// import url from "../src/url";
+// import {name} from "./url.js";
+import { url } from './url.js';
 
 
 function First()
@@ -26,9 +27,10 @@ function First()
 
     useEffect(()=>{
 
-      // alert(url.name);
+      // alert(url);
+      
 
-        fetch(process.env.url+"/showadmin", {
+        fetch(url+"/showadmin", {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -69,7 +71,7 @@ function First()
   var [noofcourse, setnoofcourse] = useState("");
   var [noofcertificates, setnoofcertificates] = useState("");
     
-    fetch("http://localhost:3000/showstudentfees", {
+    fetch(url+"/showstudentfees", {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -113,7 +115,7 @@ function First()
         const user = { address: address, tagline: tagline, email: email, phn2: phn2, phn3: phn3, phn1: phn1,  footer: footer, timing: timing,adminid:adminid };
         console.log(user);
 
-        fetch("http://localhost:3000/updateadmin", {
+        fetch(url+"/updateadmin", {
             method: "POST",
             headers: {
                 Accept: "application/json",

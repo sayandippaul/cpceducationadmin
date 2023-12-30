@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './About';
 import First from './First';
+import { url } from './url.js';
+
 // import Showstudentfees from './showstudentfees';
 
 import { useState, useEffect,useRef } from "react";
@@ -17,7 +19,7 @@ function Homeside() {
     var [institute, setinstitute] = useState("");
 
 
-    fetch("http://localhost:3000/showadmin", {
+    fetch(url+"/showadmin", {
         method: "POST",
         headers: {
           Accept: "application/json",

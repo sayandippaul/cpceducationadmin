@@ -1,3 +1,6 @@
+
+import { url } from './url.js';
+
 function About()
 {
     return (

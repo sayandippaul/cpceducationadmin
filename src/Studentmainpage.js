@@ -1,6 +1,8 @@
 
 import './assets/css/johndoe.css';
 import './assets/vendors/themify-icons/css/themify-icons.css';
+import { url } from './url.js';
+
 // import './assets/vendors/jquery/jquery-3.4.1.js';
 // import './assets/vendors/bootstrap/bootstrap.bundle.js';
 // import './assets/vendors/bootstrap/bootstrap.affix.js';

@@ -1,4 +1,5 @@
 import React, { useState, useEffect,useRef } from "react";
+import { url } from './url.js';
 
 var p;
 var days=['a','b','c','d','e','f','g'];
@@ -40,7 +41,7 @@ function Seebatches() {
         // p=e;
 
         var batch = { date: n }
-        fetch("http://localhost:3000/getbatch", {
+        fetch(url+"/getbatch", {
             method: "POST",
             headers: {
                 Accept: "application/json",

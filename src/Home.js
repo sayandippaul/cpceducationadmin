@@ -1,4 +1,6 @@
 import {react} from 'react'
+import { url } from './url.js';
+
 function Home()
 {
     return (

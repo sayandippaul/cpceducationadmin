@@ -1,6 +1,9 @@
 import s from "./studentmainpage.css";
 import { useState, useEffect, useRef } from "react";
+import { url } from './url.js';
+
 var student = [];
+
 var times = ["7:00-9:00AM", "9:00-12:00PM", "12:00-2:00PM", "2:00-4:00PM", "4:00-6:00PM", "6:00-8:00PM", "8:00-10:00PM"];
 var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 var keys = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
@@ -28,7 +31,7 @@ function Studentmainpage()
         console.log(user);
 
         var studentbatch = [];
-        fetch("http://localhost:3000/updatestudent", {
+        fetch(url+"/updatestudent", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -67,7 +70,7 @@ function Studentmainpage()
         if (dataFetchedRef.current) return;
         dataFetchedRef.current = true;
 
-        fetch("http://localhost:3000/loginid", {
+        fetch(url+"/loginid", {
             method: "POST",
             headers: {
                 Accept: "application/json",

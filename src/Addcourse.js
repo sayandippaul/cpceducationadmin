@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Placeholder from "react-bootstrap/Placeholder";
 import Form from "react-bootstrap/Form";
 import React, { useState, useEffect, useRef } from "react";
+import { url } from './url.js';
 
 function Addcourse() {
   var lastcpcid=localStorage.getItem("lastcourseid");
@@ -37,7 +38,7 @@ function Addcourse() {
     console.log(course);
     // var  text = { username: name, email: email, month: month,amount:amount,batch:batch };
   
-    fetch("http://localhost:3000/Addcourse", {
+    fetch(url+"/Addcourse", {
       method: "POST",
       headers: {
         Accept: "application/json",

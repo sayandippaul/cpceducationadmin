@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import { useState, useEffect, useRef } from "react";
+import { url } from './url.js';
 
 // import "./showstudent.css";
 function Managecourses() {
@@ -31,7 +32,7 @@ function Managecourses() {
       // text = "You pressed OK!";
       // alert("hit");
       var ds = { courseid: cid };
-      fetch("http://localhost:3000/deletecourse", {
+      fetch(url+"/deletecourse", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -81,7 +82,7 @@ function Managecourses() {
     };
     console.log(user);
 
-    fetch("http://localhost:3000/updatecourse", {
+    fetch(url+"/updatecourse", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -104,7 +105,7 @@ function Managecourses() {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
 
-    fetch("http://localhost:3000/showcourses", {
+    fetch(url+"/showcourses", {
       method: "GET",
       headers: {
         Accept: "application/json",

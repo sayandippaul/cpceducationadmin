@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import { useState, useEffect, useRef } from "react";
+import { url } from './url.js';
 
 // import "./showstudent.css";
 function Admission() {
@@ -29,7 +30,7 @@ function Admission() {
       // text = "You pressed OK!";
       // alert("hit");
       var ds = { email: cid,name:name };
-      fetch("http://localhost:3000/rejectadmission", {
+      fetch(url+"/rejectadmission", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -61,7 +62,7 @@ function Admission() {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
 
-    fetch("http://localhost:3000/showadmission", {
+    fetch(url+"/showadmission", {
       method: "GET",
       headers: {
         Accept: "application/json",
