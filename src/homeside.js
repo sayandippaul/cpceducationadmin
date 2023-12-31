@@ -173,7 +173,7 @@ document.querySelector('.sidebar').classList.toggle("open");
 
                                 <div className="dropdown-menu bg-transparent border-0">
                                     {/* <a href="/about" className="dropdown-item">ADD STUDENTS</a> */}
-                                    <Link className="link dropdown-item" to="/Addstudent">NEW ADMISSSION</Link>
+                                    <Link className="link dropdown-item" to="/Addstudent">NEW ADMISSION</Link>
                                     <Link className="link dropdown-item" to="/Admission">APPROVE ADMISSION</Link>
                                     <Link className="link dropdown-item" to="/Managestudents">STUDENTS DETAILS</Link>
 
