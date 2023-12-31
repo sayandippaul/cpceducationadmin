@@ -46,9 +46,10 @@ function Admission() {
         .then((res) => res.json())
         .then((data) => {})
         .catch((err) => console.log(err));
-    } else {
+    }
+     else {
       // text = "You canceled!";
-      alert("student can not be rejected");
+      alert("student not rejected");
     }
     window.location.reload();
 

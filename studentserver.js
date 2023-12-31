@@ -614,9 +614,10 @@ app.post("/deletecourse", async (req, res) => {
   }
 });
 app.post("/rejectadmission", async (req, res) => {
-  console.log("deleted");
   try {
     var result = await AdmissionModel.deleteOne({ email: req.body.email });
+  console.log(result);
+
     if (result.deletedCount === 1) {
       console.log("Successfully deleted one document.");
       var nodemailer = require("nodemailer");
