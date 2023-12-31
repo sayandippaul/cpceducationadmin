@@ -18,7 +18,29 @@ function Homeside() {
     var [newadmission, setnewadmission] = useState("");
     var [institute, setinstitute] = useState("");
 
-
+    fetch(url+"/lastcpcid", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+          // alert("success");
+          localStorage.setItem("lastcpcid",data.cpcid);
+    localStorage.setItem("lastcourseid",data.courseid);
+    localStorage.setItem("lastqid",data.qid);
+    localStorage.setItem("lastaid",data.aid);
+  
+        })
+        .catch((err) => console.log(err));
+  
+  
     fetch(url+"/showadmin", {
         method: "POST",
         headers: {
