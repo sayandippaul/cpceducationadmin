@@ -274,7 +274,7 @@ app.post("/lastcpcid", async (req, res) => {
   var cpciddata =  await Model.find().sort( {_id: -1}).limit(1);
   var courseiddata =  await CourseModel.find().sort( {_id: -1}).limit(1);
   var qiddata =  await FeedbackModel.find().sort( {_id: -1}).limit(1);
-  var admiddata =  await AdmissionModel.find().sort( {_id: -1}).limit(1);
+  var admiddata =  await AdmissionModel;
   // var data="studentcpc".students.find({}, { array: { $slice: -1 } });
 // //  (data);
   // var obj={"cpcid":,"courseid":,"qid"}
@@ -302,7 +302,7 @@ cpcidnew=cpciddata[0].cpcid;
  
 
   var obj={"cpcid":cpcidnew,"courseid":courseidnew,"qid":questionidnew,"aid":admiddata.length};
- 
+ console.log(obj);
 
   res.send(obj);
 // res.json(data);
