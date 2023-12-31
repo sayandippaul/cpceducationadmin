@@ -508,7 +508,7 @@ app.post("/updatepend", async (req, res) => {
         // or a .pdf file
         await page.pdf({
           format: "A4",
-          path: `pdf/invoice.pdf`,
+          path: `src/pdf/invoice.pdf`,
         });
 
         // close the browser
@@ -537,7 +537,7 @@ app.post("/updatepend", async (req, res) => {
         attachments: [
           {
             filename: "invoice.pdf",
-            path: "pdf/invoice.pdf",
+            path: "src/pdf/invoice.pdf",
           },
         ],
       };
@@ -1248,9 +1248,9 @@ app.post("/addfees", async (req, res) => {
 
 app.post("/addfeeseverymonth", async (req, res) => {
   var d = new Date();
-    // var curmonth = d.getMonth()+1;
-    console.log(curmonth+1);
-   var curmonth=4;
+    var curmonth = d.getMonth()+1;
+    // console.log(curmonth+1);
+  //  var curmonth=4;
     // var curyear = d.getyear()+1;
 
   var data = await Model.find();
